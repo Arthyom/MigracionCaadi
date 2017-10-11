@@ -6,6 +6,10 @@ import java.util.ArrayList;
 import java.util.List;
 import javax.inject.Named;
 import javax.enterprise.context.RequestScoped;
+import javax.faces.application.FacesMessage;
+import javax.faces.component.UIComponent;
+import javax.faces.component.UIInput;
+import javax.faces.context.FacesContext;
 
 
 @Named(value = "modeloPersona")
@@ -15,6 +19,16 @@ public class ModeloPersona {
     private Persona PersonaNueva = new Persona ();
     private static  List<Persona> ListaPersonas = new ArrayList<Persona>();
 
+    public void ValidatorSexo (FacesContext Cont, UIComponent comp, Object contrl){
+        Cont = FacesContext.getCurrentInstance();
+        String txt = (String)contrl;
+        
+        // logica de validacion
+        if( !txt.contains("M") && !txt.contains("F") ){
+            ((UIInput)comp).setValid(false);
+            Cont.addMessage(comp.getClientId(Cont), new FacesMessage("Valores invalidos"));
+        }  
+    }
 
     public List<Persona> PersonasAgregadas (){
         return  ModeloPersona.ListaPersonas;

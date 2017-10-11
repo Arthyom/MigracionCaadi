@@ -8,20 +8,30 @@
     </h:head>
     <h:body>
         <h:form>
-            <h:panelGrid columns="2">
+            <h:panelGrid columns="3">
                 <h:outputLabel value="Nombre"/>
-                <h:inputText value="#{modeloPersona.personaNueva.nombre}"/>
+                <h:inputText id="txt_nombre" required="true" value="#{modeloPersona.personaNueva.nombre}" label="Nombre"/>
+                <h:message for="txt_nombre" />
                 
                 <h:outputLabel value="Apellido Paterno"/>
-                <h:inputText value="#{modeloPersona.personaNueva.apellidoPaterno}"/>
+                <h:inputText id="txt_ApP"  label="Apellido" value="#{modeloPersona.personaNueva.apellidoPaterno}">
+                    <f:validateLength minimum="10"/>
+                </h:inputText>
+                <h:message for="txt_ApP"/>
                 
-                <h:outputLabel value="Apellido Materno"/>
-                <h:inputText value="#{modeloPersona.personaNueva.apellidoMaterno}"/>
+                <h:outputLabel id="txt_ApM" value="Apellido Materno"/>
+                <h:inputText value="#{modeloPersona.personaNueva.apellidoMaterno}">
+                    <f:validateLength for="txt_ApM" maximum="18"/>
+                </h:inputText>
+                 <h:message for="txt_ApM"/>
                 
-                <h:selectOneMenu value="#{modeloPersona.personaNueva.sexo}">
+                <h:selectOneMenu id="slct_Sexo" label="Sexo"
+                                 validator="#{modeloPersona.ValidatorSexo(Cont, comp, contrl)}"
+                                 value="#{modeloPersona.personaNueva.sexo}">
                     <f:selectItem itemLabel="Masculino" itemValue="M"/>
                     <f:selectItem itemLabel="Femenino" itemValue="F"/>
                 </h:selectOneMenu>
+                <h:message for="slct_Sexo"/>
             </h:panelGrid>
             
             <h:commandButton value="Enviar" actionListener="#{modeloPersona.agregarPersona()}"/>
