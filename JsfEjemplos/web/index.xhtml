@@ -1,0 +1,63 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <title>Facelet Title</title>
+    </h:head>
+    <h:body>
+        <h:form>
+            <h:panelGrid columns="2">
+                <h:outputLabel value="Nombre"/>
+                <h:inputText value="#{modeloPersona.personaNueva.nombre}"/>
+                
+                <h:outputLabel value="Apellido Paterno"/>
+                <h:inputText value="#{modeloPersona.personaNueva.apellidoPaterno}"/>
+                
+                <h:outputLabel value="Apellido Materno"/>
+                <h:inputText value="#{modeloPersona.personaNueva.apellidoMaterno}"/>
+                
+                <h:selectOneMenu value="#{modeloPersona.personaNueva.sexo}">
+                    <f:selectItem itemLabel="Masculino" itemValue="M"/>
+                    <f:selectItem itemLabel="Femenino" itemValue="F"/>
+                </h:selectOneMenu>
+            </h:panelGrid>
+            
+            <h:commandButton value="Enviar" actionListener="#{modeloPersona.agregarPersona()}"/>
+            
+            <h:dataTable value="#{modeloPersona.listaPersona}" 
+                         var="p"
+                         rendered="#{modeloPersona.listaPersona.size() > 0 eq true}"
+            >
+                <f:facet name="header">Nombre</f:facet>
+                <h:column>
+                    <h:outputLabel value="#{p.nombre}"/>
+                </h:column>         
+                
+                <f:facet name="header">Apellido Paterno</f:facet>
+                <h:column>
+                    <h:outputLabel value="#{p.apellidoPaterno}"/>
+                </h:column>         
+                
+                <f:facet name="header">Apellido Materno</f:facet>
+                <h:column>
+                    <h:outputLabel value="#{p.apellidoMaterno}"/>
+                </h:column>         
+                
+                <f:facet name="header">Genero</f:facet>
+                <h:column>
+                    <h:outputLabel value="#{p.sexo}"/>
+                </h:column>    
+                
+                <f:facet name="header">Opciones</f:facet>
+                <h:column>
+                    <h:commandLink value="Borrar" action="#{modeloPersona.RemocerPersona(p)}"/>
+                </h:column>   
+                
+            </h:dataTable>
+            
+        </h:form>
+    </h:body>
+</html>
+
