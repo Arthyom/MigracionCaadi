@@ -1,6 +1,8 @@
 
 package Com.Clases;
 
+import javax.faces.context.FacesContext;
+
 public class Persona {
     
     private String Nombre, ApellidoPaterno, ApellidoMaterno, Sexo;
@@ -35,6 +37,9 @@ public class Persona {
 
     public void setSexo(String Sexo) {
         this.Sexo = Sexo;
+        
+       
+        
     }
     
     

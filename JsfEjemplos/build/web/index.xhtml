@@ -10,7 +10,8 @@
         <h:form>
             <h:panelGrid columns="3">
                 <h:outputLabel value="Nombre"/>
-                <h:inputText id="txt_nombre" required="true" value="#{modeloPersona.personaNueva.nombre}" label="Nombre"/>
+                <h:inputText id="txt_nombre" required="true"
+                             binding="#{usr}" value="#{modeloPersona.personaNueva.nombre}" label="Nombre"/>
                 <h:message for="txt_nombre" />
                 
                 <h:outputLabel value="Apellido Paterno"/>
@@ -25,8 +26,9 @@
                 </h:inputText>
                  <h:message for="txt_ApM"/>
                 
+                 
                 <h:selectOneMenu id="slct_Sexo" label="Sexo"
-                                 validator="#{modeloPersona.ValidatorSexo(Cont, comp, contrl)}"
+                                 
                                  value="#{modeloPersona.personaNueva.sexo}">
                     <f:selectItem itemLabel="Masculino" itemValue="M"/>
                     <f:selectItem itemLabel="Femenino" itemValue="F"/>
@@ -66,6 +68,16 @@
                 </h:column>   
                 
             </h:dataTable>
+            
+            
+            
+            <h:commandButton value="Log in" actionListener="#{modeloPersona.StartSession(
+                                           modeloPersona.personaNueva.nombre)}" action="Pagina2.xhtml"/>
+            
+            <h:commandButton value="Acceder" action="#{modeloPersona.verificarSession(usr.value)}"/>
+                           
+            
+            
             
         </h:form>
     </h:body>
