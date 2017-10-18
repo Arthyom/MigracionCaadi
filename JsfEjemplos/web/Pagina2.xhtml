@@ -35,7 +35,7 @@ and open the template in the editor.
             
                <h:inputText binding="#{killses}"/>
             
-            <h:commandButton value="Cerrar Session" action="#{modeloPersona.cerrarSesion()}"/>
+            <h:commandButton value="Cerrar Session" action="#{modeloPersona.cerrarSesion(killses.value)}"/>
             
             <h:commandButton value="Ir a indice" action="index.xhtml"/>
   

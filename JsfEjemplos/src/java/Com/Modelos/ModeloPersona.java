@@ -84,8 +84,12 @@ public class ModeloPersona implements Serializable {
  
     }
 
-    public void cerrarSesion () throws IOException{
-        FacesContext.getCurrentInstance().getExternalContext().invalidateSession();
+    public void cerrarSesion ( String Usr ) throws IOException{
+        
+        // intentar remover el objeto identificado por "user" del hash de sesiones 
+        FacesContext.getCurrentInstance().getExternalContext().getSessionMap().remove(Usr);
+
+        //FacesContext.getCurrentInstance().getExternalContext().invalidateSession();
         FacesContext.getCurrentInstance().getExternalContext().redirect("index.xhtml");
     }
     
